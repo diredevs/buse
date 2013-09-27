@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Buse Project</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="css/style.css" /> 	
+
+	</head>
+	<body>
+		<div class="container">
+
+      <div class="hero-unit">
+
+        <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="container">
+                    <ul class="nav">
+                      <li class="active">
+                        <div class="controls">
+                          <input id="buscaronibus" name="buscaronibus" type="text" placeholder="Número do ônibus" class="input-xxlarge">
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+        </div>
+
+
+    		<h1>Seu ônibus está aqui!</h1>
+ 
+   			<p>Gostaria de saber a hora em que o ônibus vai chegar? Basta clicar e informar a linha sobre a qual deseja ter informações.</p>
+
+       
+        <div id="map_canvas"></div>
+
+        <div id="teste"></div>
+      </div>
+
+     <p><button onclick="findMe()">Ache-me</button></p>
+
+    <script src="js/getLocation.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="js/mapGenerator.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+    
+	</body>
+</html>

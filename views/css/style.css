@@ -1,0 +1,65 @@
+@media (max-width: 480px) {
+	h1 {
+		font-size: 16px !important;
+	}
+
+	p {
+		font-size: 12px !important;
+		line-height: 80% !important;
+	}
+
+	.container {
+		margin: 0px 0px 0px 0px !important;
+		padding: 0px 0px 0px 0px !important;
+	}
+
+	.hero-unit {
+		padding-left: 5px;
+		padding-right: 5px;
+		margin: 0px 0px 0px 0px !important;
+	}
+
+	#map_canvas {
+		height: 200px !important;
+	}
+}
+
+@media (max-width: 320px) {
+
+	.hero-unit {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	#map_canvas {
+		height: 350px !important;
+	}
+
+	h1 {
+		font-size: 14px !important;
+	}
+
+	p {
+		font-size: 10px !important;
+	}
+}
+
+#map_canvas {
+	height: 400px;
+	background-color: #CCCCCC;
+}
+
+.hero-unit {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.hero-unit .controls {
+	padding-top: 7px ;
+}
+
+.active .controls {
+	display: inline-block;
+    text-align: center;
+}
