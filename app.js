@@ -21,4 +21,5 @@ server.get("*", function(request, response) {
 	response.end("404 - page not found!");
 });
 
-http.createServer(server).listen(5000);
+var port = process.env.PORT || 5000;
+http.createServer(server).listen(port);
