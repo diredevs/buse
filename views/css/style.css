@@ -47,6 +47,9 @@
 #map_canvas {
 	height: 400px;
 	background-color: #CCCCCC;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #F9F9F9;
 }
 
 .hero-unit {

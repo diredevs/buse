@@ -18,7 +18,23 @@
                     <ul class="nav">
                       <li class="active">
                         <div class="controls">
-                          <input id="buscaronibus" name="buscaronibus" type="text" placeholder="Buscar" class="input-xxlarge">
+                          <p><button title="Ache-me" onclick="findMe()">
+                            <img src="/img/target_30x30.png" alt="target" />
+                          </button></p>
+                        </div>
+                      </li>
+                      <li class="active">
+                        <div class="controls">
+                          <p><button title="Mover mapa" onclick="enableMapDrag()">
+                            <img src="/img/move_30x30.png" alt="bus with signal" />
+                          </button></p>
+                        </div>
+                      </li>
+                      <li class="active">
+                        <div class="controls">
+                          <p><button title="Transmitir posição">
+                            <img src="/img/bussignal_30x30.png" alt="bus with signal" />
+                          </button></p>
                         </div>
                       </li>
                     </ul>
@@ -26,20 +42,12 @@
                 </div>
         </div>
 
-
-    		<h1>Seu ônibus está aqui!</h1>
- 
-   			<p>Gostaria de saber a hora em que o ônibus vai chegar? Basta clicar e informar a linha sobre a qual deseja ter informações.</p>
-
-       
         <div id="map_canvas"></div>
 
-        <div id="teste"></div>
       </div>
 
-     <p><button onclick="findMe()">Ache-me</button></p>
-
     <script src="js/getLocation.js"></script>
+    <script src="js/enableMapDrag.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
     <script src="js/mapGenerator.js"></script>
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
