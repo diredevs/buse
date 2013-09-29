@@ -44,6 +44,10 @@
 	}
 }
 
+input[type=submit] {
+	-webkit-border-radius:0px;
+}
+
 #map_canvas {
 	height: 400px;
 	background-color: #CCCCCC;
