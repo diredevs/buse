@@ -66,3 +66,26 @@
 	display: inline-block;
     text-align: center;
 }
+
+.btn {
+  background: #bbb;
+  padding: 0.5em 1em;
+  border: 1px solid #999;
+  border-radius: 2px;
+  text-decoration:none;
+  font-weight: 600;
+  color: #444;
+  text-shadow: 0 1px 0 #ddd;
+}
+
+.btn:hover {
+  background: #ccc;
+}
+
+.btn:active {
+  background: #aaa;
+}
+
+.btn.big {
+  font-size: 24px;
+}
