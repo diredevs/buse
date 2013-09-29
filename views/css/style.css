@@ -45,10 +45,7 @@
 }
 
 .navbutton {
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -khtml-border-radius: 0px;
-    border-radius: 0px;
+    -webkit-appearance: none;
 }
 
 #map_canvas {
