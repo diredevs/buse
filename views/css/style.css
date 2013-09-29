@@ -44,8 +44,9 @@
 	}
 }
 
-input[type=submit] {
-	-webkit-border-radius:0px;
+input {
+	-webkit-appearance: none;
+    border-radius: 0;
 }
 
 #map_canvas {
