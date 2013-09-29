@@ -45,8 +45,8 @@
 }
 
 button {
-
-    -webkit-border-radius: 0 !important;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
 }
 
 #map_canvas {
