@@ -44,10 +44,6 @@
 	}
 }
 
-.navbutton {
-    -webkit-appearance: none;
-}
-
 #map_canvas {
 	height: 400px;
 	background-color: #CCCCCC;
