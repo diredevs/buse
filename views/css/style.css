@@ -46,7 +46,7 @@
 
 input {
 	-webkit-appearance: none;
-    border-radius: 0;
+    -webkit-border-radius: 0;
 }
 
 #map_canvas {
