@@ -1,7 +1,5 @@
 var map;
-var myPosition;
 var marker;
-
 function initialize() {
 	var map_canvas = document.getElementById('map_canvas');
 	var map_options = {
@@ -14,15 +12,20 @@ function initialize() {
 	}
 	map = new google.maps.Map(map_canvas, map_options);
 
-
-
-	//set map center to the user location
+	//set map center to the user location and show its marker
 	navigator.geolocation.getCurrentPosition(function(position) {
   		initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-  		map.setCenter(initialLocation);
+  		myPosition = initialLocation;
+  		map.setCenter(myPosition);
+  		marker = new google.maps.Marker({
+			position: myPosition,
+    		map: map,
+    		title: 'Minha posição'
+  		});
 		}, function() {}
 	);
-	getCurrentPosition();
+
+	//getCurrentPosition();
 
 }
 google.maps.event.addDomListener(window, 'load', initialize);
