@@ -58,15 +58,6 @@
 	margin-bottom: 0px;
 }
 
-.hero-unit .controls {
-	padding-top: 7px ;
-}
-
-.active .controls {
-	display: inline-block;
-    text-align: center;
-}
-
 .button-group {
   margin: 0;
   padding: 0;
@@ -96,8 +87,11 @@
   background: #ddd;
 }
 
+
+.button-group li.pushed-button, 
 .button-group li:active {
-  background: #bbb;
+  background: #aaa;
+  border: 1px solid #f00;
 }
 
 .button-group li a {

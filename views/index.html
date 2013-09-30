@@ -13,14 +13,15 @@
       <div>
         <div class="container">
           <ul class="button-group">
-            <li><a href="#" onclick="targetMe()" title="Ache-me"><img src="/img/target_30x30.png" alt="target" /></a></li>
-            <li><a href="#" title="Mover mapa" onclick="enableMapDrag()"><img src="/img/move_30x30.png" alt="bus with signal" /></a></li>
+            <li id="toggleMap"><a href="#" onclick="targetMe()" title="Ache-me"><img src="/img/target_30x30.png" alt="target" /></a></li>
             <li><a href="#" title="Transmitir posição"><img src="/img/bussignal_30x30.png" alt="bus with signal" /></a></li>
           </ul>
         </div>
         <div id="map_canvas"></div>
       </div>
 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/pushableButton.js"></script>
     <script src="js/getCurrentPosition.js"></script>
     <script src="js/targetMe.js"></script>
     <script src="js/enableMapDrag.js"></script>
