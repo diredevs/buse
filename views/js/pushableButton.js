@@ -4,15 +4,19 @@ $(document).ready(function(){
   var isPushed = false;
   
   tgBtn.on("click", function(){
-    if (isPushed) {
-      enableMapDrag();
-      tgBtn.removeClass("pushed-button");
-      isPushed = false;
+    if (!isPushed) {
+    	isPushed = true;
+    	following = true;
+    	followMe();
+    	tgBtn.addClass("pushed-button");  
     } else {
-      targetMe();
-      tgBtn.addClass("pushed-button");  
-      isPushed = true;
+    	isPushed = false;
+    	following = false;
+    	enableMapDrag();
+    	tgBtn.removeClass("pushed-button");
     }
   });
   
 });
+
+// oi
