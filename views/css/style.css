@@ -1,65 +1,31 @@
-@media (max-width: 480px) {
-	h1 {
-		font-size: 16px !important;
-	}
-
-	p {
-		font-size: 12px !important;
-		line-height: 80% !important;
-	}
-
-	.container {
-		margin: 0px 0px 0px 0px !important;
-		padding: 0px 0px 0px 0px !important;
-	}
-
-	.hero-unit {
-		padding-left: 5px;
-		padding-right: 5px;
-		margin: 0px 0px 0px 0px !important;
-	}
-
-	#map_canvas {
-		height: 250px !important;
-	}
-}
-
-@media (max-width: 320px) {
-
-	.hero-unit {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-
-	#map_canvas {
-		height: 400px !important;
-	}
-
-	h1 {
-		font-size: 14px !important;
-	}
-
-	p {
-		font-size: 10px !important;
-	}
-}
-
 #map_canvas {
-	height: 500px;
-	background-color: #CCCCCC;
-	border-width: 2px;
-	border-style: solid;
-	border-color: #F9F9F9;
+	height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
 }
 
+.navigation {
+  margin: 1em;
+  float: right;
+}
+ 
 .button-group {
   margin: 0;
   padding: 0;
 }
 
+  .button-group:after {
+    clear: both;
+    content: "";
+    display: ta
+  }
+
 .button-group li{
   list-style: none;
-  display: block;
+  display: inline-block;
   float: left;
   background: #ccc;
   border: 1px solid #aaa;
