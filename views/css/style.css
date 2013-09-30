@@ -20,7 +20,7 @@
 	}
 
 	#map_canvas {
-		height: 200px !important;
+		height: 250px !important;
 	}
 }
 
@@ -32,7 +32,7 @@
 	}
 
 	#map_canvas {
-		height: 350px !important;
+		height: 400px !important;
 	}
 
 	h1 {
@@ -45,17 +45,11 @@
 }
 
 #map_canvas {
-	height: 400px;
+	height: 500px;
 	background-color: #CCCCCC;
 	border-width: 2px;
 	border-style: solid;
 	border-color: #F9F9F9;
-}
-
-.hero-unit {
-	padding-top: 0px;
-	padding-bottom: 0px;
-	margin-bottom: 0px;
 }
 
 .button-group {
@@ -65,7 +59,7 @@
 
 .button-group li{
   list-style: none;
-  display: inline-block;
+  display: block;
   float: left;
   background: #ccc;
   border: 1px solid #aaa;
