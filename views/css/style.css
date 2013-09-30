@@ -17,12 +17,6 @@
   padding: 0;
 }
 
-  .button-group:after {
-    clear: both;
-    content: "";
-    display: ta
-  }
-
 .button-group li{
   list-style: none;
   display: inline-block;
