@@ -19,8 +19,8 @@ function initialize() {
   		marker = new google.maps.Marker({
 			position: myPosition,
     		map: map,
-    		icon: 'img/pin_min.png',
-    		title: 'Voce ja pensou nisso??'
+    		icon: 'img/userRedPin.png',
+    		title: 'Minha posição'
   		});
 		}, function() {}
 	);
