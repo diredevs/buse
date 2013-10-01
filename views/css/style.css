@@ -50,7 +50,7 @@
 
 .button-group li a {
   text-decoration: none;
-  display: block;
+  display: inline;
   padding: 0.5em 1em;
   width: 100%;
   height: 100%;
