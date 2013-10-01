@@ -7,9 +7,14 @@
   z-index: -1;
 }
 
-.navigation {
+.navRight {
   margin: 1em;
   float: right;
+}
+
+.navLeft {
+  margin: 1em;
+  float: left;
 }
  
 .button-group {
