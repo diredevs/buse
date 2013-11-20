@@ -1,4 +1,4 @@
-require('newrelic');
+var nr = require('newrelic');
 var express = require("express");
 var http = require("http");
 var server = express();
