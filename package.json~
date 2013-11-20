@@ -2,7 +2,7 @@
   "name": "buse",
   "version": "0.0.1",
   "dependencies": {
-    "express": "3.4.4",
+    "express": "3.1.x",
 		"ejs": "0.8.4"
   },
 	"scripts": {
