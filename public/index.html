@@ -1,34 +1,69 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Buse Project</title>
-        <link rel="stylesheet" href="css/normalize.css">
-		<link type="text/css" rel="stylesheet" href="css/style.css" /> 	
-        <meta name="viewport" content="initial-scale=1">
-	</head>
-	<body>
-        <div id="map_canvas"></div>
+<!-- index.html -->
+<!doctype html>
 
-        <div class="navLeft">
-          <ul class="button-group">
-            <li><a href="#" onclick="zoomOut()" title="Zoom Out"><img src="/img/zoomout_30x30.png" alt="target" /></a></li>
-            <li><a href="#" onclick="zoomIn()" title="Zoom In"><img src="/img/zoomin_30x30.png" alt="bus with signal" /></a></li>
-          </ul>
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="circularUfrn">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Circular UFRN - BUSE Project</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>I'm a Bus-aholic <span class="label label-info">{{ buses.length }}</span></h1>
         </div>
 
-        <div class="navRight">
-          <ul class="button-group">
-            <li id="toggleMap"><a href="#" title="Siga-me"><img src="/img/target_30x30.png" alt="target" /></a></li>
-            <li><a href="#" title="Visualizar onibus"><img src="/img/bussignal_30x30.png" alt="onibus" /></a></li>
-          </ul>
+        <!-- TODO LIST -->
+        <div id="bus-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="bus in buses">
+                    <label>
+                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.bus_id }}
+                    </label>
+                </div>
+
+            </div>
         </div>
 
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="js/jquery.jpanelmenu.min.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-        <script src="js/pushableButton.js"></script>
-        <script src="js/mapOptions.js"></script>    
-        <script src="js/mapGenerator.js"></script>
-	</body>
+        <!-- FORM TO CREATE BUSES -->
+        <div id="bus-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Create a bus" ng-model="formData.text">
+                    </div>
+
+                    <!-- createBus() WILL CREATE NEW Buses -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createBus()">Add</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
 </html>
