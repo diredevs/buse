@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Buse Project</title>
+        <link rel="stylesheet" href="css/normalize.css">
+		<link type="text/css" rel="stylesheet" href="css/style.css" /> 	
+        <meta name="viewport" content="initial-scale=1">
+	</head>
+	<body>
+        <div id="map_canvas"></div>
+
+        <div class="navLeft">
+          <ul class="button-group">
+            <li><a href="#" onclick="zoomOut()" title="Zoom Out"><img src="/img/zoomout_30x30.png" alt="target" /></a></li>
+            <li><a href="#" onclick="zoomIn()" title="Zoom In"><img src="/img/zoomin_30x30.png" alt="bus with signal" /></a></li>
+          </ul>
+        </div>
+
+        <div class="navRight">
+          <ul class="button-group">
+            <li id="toggleMap"><a href="#" title="Siga-me"><img src="/img/target_30x30.png" alt="target" /></a></li>
+            <li><a href="#" title="Visualizar onibus"><img src="/img/bussignal_30x30.png" alt="onibus" /></a></li>
+          </ul>
+        </div>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="js/jquery.jpanelmenu.min.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+        <script src="js/pushableButton.js"></script>
+        <script src="js/mapOptions.js"></script>    
+        <script src="js/mapGenerator.js"></script>
+	</body>
+</html>
