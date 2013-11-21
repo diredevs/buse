@@ -5,12 +5,13 @@ var mongoose = require('mongoose'); 					// mongoose for mongodb
 
 // configuration =================
 
-mongoose.connect('mongodb://<user>:<pass>@mongo.onmodulus.net:27017/ryte2jaG'); 	// connect to mongoDB database on modulus.io
+mongoose.connect('mongodb://piu:piu@mongo.onmodulus.net:27017/ryte2jaG'); 	// connect to mongoDB database on modulus.io
 
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
 	app.use(express.logger('dev')); 						// log every request to the console
-	app.use(express.bodyParser()); 							// pull information from html in POST
+	app.use(express.json());
+	app.use(express.urlencoded());							// pull information from html in POST
 	app.use(express.methodOverride()); 						// simulate DELETE and PUT
 });
 
@@ -18,10 +19,7 @@ app.configure(function() {
 var Schema = mongoose.Schema;
 
 var busSchema = new Schema({
-  lat: Number,
-  lng: Number,
-  bus_id: Number,
-  accessibility: Boolean,
+  text : String
 });
 
 // define model =================
@@ -30,7 +28,7 @@ var Bus = mongoose.model('Bus', busSchema);
 // routes ======================================================================
 
 // api ---------------------------------------------------------------------
-// get all todos
+// get all buses
 app.get('/api/buses', function(req, res) {
 
 	// use mongoose to get all buses in the database
@@ -49,9 +47,7 @@ app.post('/api/buses', function(req, res) {
 
 	// create a bus, information comes from AJAX request from Angular
 	Bus.create({
-		lat 			: req.body.lat,
-		lng 			: req.body.lng,
-		accessibility 	: req.body.accessibility
+		text 			: req.body.text,
 
 	}, function(err, bus) {
 		if (err)

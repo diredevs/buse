@@ -24,11 +24,11 @@
     <script src="core.js"></script>
 
 </head>
-<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+<!-- SET THE CONTROLLER AND GET ALL BUSES WITH INITIALIZE FUNCTION -->
 <body ng-controller="mainController">
     <div class="container">
 
-        <!-- HEADER AND TODO COUNT -->
+        <!-- HEADER AND BUS COUNT -->
         <div class="jumbotron text-center">
             <h1>I'm a Bus-aholic <span class="label label-info">{{ buses.length }}</span></h1>
         </div>
@@ -40,7 +40,7 @@
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
                 <div class="checkbox" ng-repeat="bus in buses">
                     <label>
-                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.bus_id }}
+                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.text }}
                     </label>
                 </div>
 
