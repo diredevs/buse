@@ -18,9 +18,9 @@ app.configure(function() {
 var Schema = mongoose.Schema;
 
 var busSchema = new Schema({
-  lat: double,
-  lng: double,
-  id: int,
+  lat: Number,
+  lng: Number,
+  id: Number,
   accessibility: Boolean,
 });
 
