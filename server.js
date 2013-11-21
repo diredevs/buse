@@ -24,6 +24,9 @@ var busSchema = new Schema({
   accessibility: Boolean,
 });
 
+// define model =================
+var Bus = mongoose.model('Bus', busSchema);
+
 // listen (start app with node server.js) ======================================
 app.listen(8080);
 console.log("App listening on port 8080");
