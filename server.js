@@ -5,7 +5,14 @@ var mongoose = require('mongoose'); 					// mongoose for mongodb
 
 // configuration =================
 
-mongoose.connect('mongodb://piu:piu@mongo.onmodulus.net:27017/ryte2jaG'); 	// connect to mongoDB database on modulus.io
+var dblink = 'mongodb://piu:piu@mongo.onmodulus.net:27017/ryte2jaG';
+mongoose.connect(dblink, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + dblink + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + dblink);
+  }
+});	// connect to mongoDB database on modulus.io
 
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
