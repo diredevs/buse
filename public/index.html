@@ -1,73 +1,42 @@
-<!-- index.html -->
 <!doctype html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="circularUfrn">
-<head>
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>Circular UFRN - BUSE Project</title>
+		<title>Circular UFRN - Buse Project</title>
 
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-    <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-    </style>
+        <!-- SCROLLS -->
+        <link rel="stylesheet" href="normalize.css">
+		<link type="text/css" rel="stylesheet" href="style.css" /> 
 
-    <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="core.js"></script>
+        <!-- SPELLS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+        <script src="core.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+        <script src="pushableButton.js"></script>
+        <script src="mapOptions.js"></script>    
+        <script src="mapGenerator.js"></script>
+	</head>
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>   
-    <script src="mapGenerator.js"></script>
+    <!-- SET THE CONTROLLER AND GET ALL BUSES WITH INITIALIZE FUNCTION -->
+	<body ng-controller="mainController">
+        <div id="map_canvas"></div>
 
-</head>
-<!-- SET THE CONTROLLER AND GET ALL BUSES WITH INITIALIZE FUNCTION -->
-<body ng-controller="mainController">
-    <div id="map_canvas"></div>
-    <div class="container">
-
-        <!-- HEADER AND BUS COUNT -->
-        <div class="jumbotron text-center">
-            <h1>I'm a Bus-aholic <span class="label label-info">{{ buses.length }}</span></h1>
+        <div class="navLeft">
+          <ul class="button-group">
+            <li><a href="#" onclick="zoomOut()" title="Zoom Out"><img src="/img/zoomout_30x30.png" alt="target" /></a></li>
+            <li><a href="#" onclick="zoomIn()" title="Zoom In"><img src="/img/zoomin_30x30.png" alt="bus with signal" /></a></li>
+          </ul>
         </div>
 
-        <!-- TODO LIST -->
-        <div id="bus-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-
-                <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="bus in buses">
-                    <label>
-                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.text }}
-                    </label>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- FORM TO CREATE BUSES -->
-        <div id="bus-form" class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-                <form>
-                    <div class="form-group">
-
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="Create a bus" ng-model="formData.text">
-                    </div>
-
-                    <!-- createBus() WILL CREATE NEW Buses -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createBus()">Add</button>
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-</body>
+        <div class="navRight">
+          <ul class="button-group">
+            <li id="toggleMap"><a href="#" title="Siga-me"><img src="/img/target_30x30.png" alt="target" /></a></li>
+            <li><a href="#" title="Visualizar onibus"><img src="/img/bussignal_30x30.png" alt="onibus" /></a></li>
+          </ul>
+        </div>      
+	</body>
 </html>
