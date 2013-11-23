@@ -1,18 +1,12 @@
 // set up ========================
-var express  = require('express');
-var app      = express(); 								// create our app w/ express
-var mongoose = require('mongoose'); 					// mongoose for mongodb
+var express 	= require('express');
+var app 		= express(); 								// create our app w/ express
+var mongoose	= require('mongoose'); 					// mongoose for mongodb
+var db 			= require('./config/database');
+var port 		= process.env.PORT || 5000;		
 
 // configuration =================
-
-var dblink = 'mongodb://piu:piu@mongo.onmodulus.net:27017/ryte2jaG';
-mongoose.connect(dblink, function (err, res) {
-  if (err) {
-  console.log ('ERROR connecting to: ' + dblink + '. ' + err);
-  } else {
-  console.log ('Succeeded connected to: ' + dblink);
-  }
-});	// connect to mongoDB database on modulus.io
+mongoose.connect(db.url, db.connectionHandler);
 
 app.configure(function() {
 	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
@@ -22,76 +16,9 @@ app.configure(function() {
 	app.use(express.methodOverride()); 						// simulate DELETE and PUT
 });
 
-// define schema =================
-var Schema = mongoose.Schema;
-
-var busSchema = new Schema({
-  text : String
-});
-
-// define model =================
-var Bus = mongoose.model('Bus', busSchema);
-
-// routes ======================================================================
-
-// api ---------------------------------------------------------------------
-// get all buses
-app.get('/api/buses', function(req, res) {
-
-	// use mongoose to get all buses in the database
-	Bus.find(function(err, buses) {
-
-		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-		if (err)
-			res.send(err)
-
-		res.json(buses); // return all buses in JSON format
-	});
-});
-
-// create bus and send back all buses after creation
-app.post('/api/buses', function(req, res) {
-
-	// create a bus, information comes from AJAX request from Angular
-	Bus.create({
-		text 			: req.body.text,
-
-	}, function(err, bus) {
-		if (err)
-			res.send(err);
-
-		// get and return all the buses after you create another
-		Bus.find(function(err, buses) {
-			if (err)
-				res.send(err)
-			res.json(buses);
-		});
-	});
-
-});
-
-// delete a bus
-app.delete('/api/buses/:bus_id', function(req, res) {
-	Bus.remove({
-		_id : req.params.bus_id
-	}, function(err, bus) {
-		if (err)
-			res.send(err);
-
-		// get and return all the buses after you delete another
-		Bus.find(function(err, buses) {
-			if (err)
-				res.send(err)
-			res.json(buses);
-		});
-	});
-});
-
-// application -------------------------------------------------------------
-app.get("*", function(req, res) {
-	res.sendfile('/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
+// routes =========================
+require('./app/routes.js')(app);
 
 // listen (start app with node server.js) ======================================
-app.listen(process.env.PORT || 5000);
-console.log("App listening on port 8080");
+app.listen(port);
+console.log("App listening on port" +  port);
