@@ -24,9 +24,9 @@ module.exports = function(app) {
 
 		// create a bus, information comes from AJAX request from Angular
 		Bus.create({
-			text : req.body.text,
-			lat : req.body.lat,
-			lng : req.body.lng
+			text 	: req.body.text,
+			lat 	: req.body.lat,
+			lng 	: req.body.lng
 
 		}, function(err, bus) {
 			if (err)
