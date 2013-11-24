@@ -1,22 +1,16 @@
 <!-- index.html -->
 <!doctype html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
+<!-- ASSIGN ANGULAR MODULE -->
 <html ng-app="emmiter">
 <head>
-    <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
     <title>Circular UFRN - BUSE Project</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-    <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-    </style>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
@@ -26,56 +20,39 @@
 </head>
 <!-- SET THE CONTROLLER AND GET ALL BUSES WITH INITIALIZE FUNCTION -->
 <body ng-controller="emmiterController">
-    <div id="map_canvas"></div>
+
     <div class="container">
-
-        <!-- HEADER AND BUS COUNT -->
         <div class="jumbotron text-center">
-            <h1>BUSE Database <span class="label label-info">{{ buses.length }}</span></h1>
-        </div>
-
-        <!-- TODO LIST -->
-        <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-
-                <!-- LOOP OVER THE BUSES IN $scope.buses -->
-                <div>
-                    <table class="table table-bordered table-hover">
-                        <tr>
-                            <th>Name</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
-                            <th>Remove</th>
-                        </tr>
-                        <tr ng-repeat="bus in buses">
-                            <td>{{bus.text}}</td>
-                            <td>{{bus.lat}}</td>
-                            <td>{{bus.lng}}</td>
-                            <td>
-                                <input type="checkbox" ng-click="deleteBus(bus._id)">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
+            <h1>BUSE Position Updater</h1>
         </div>
 
         <!-- FORM TO CREATE BUSES -->
         <div id="bus-form" class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
+                <h2>Update automagically. :)</h2>
                 <form>
                     <div class="form-group">
-
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus text" ng-model="formData.text">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus latitude" ng-model="formData.lat">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus longitude" ng-model="formData.lng">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus Accessibility" ng-model="formData.handicap">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus _id" ng-model="formData._id">
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="autoUpdateBus()">
+                            <a href="#" title="Rastrear-me"><img src="./public/img/target_30x30.png" alt="target" /></a>
+                        </button>
                     </div>
 
-                    <!-- createBus() WILL CREATE NEW Buses -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createBus()">Add</button>
+                </form>
+                
+
+                <h2>Manual update. :(</h2>
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus _id" ng-model="formData._id">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus latitude" ng-model="formData.lat">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus longitude" ng-model="formData.lng">
+                    </div>
+
+                    <!-- updateBus() WILL CREATE NEW Buses -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="updateBus()">Update</button>
                 </form>
             </div>
         </div>

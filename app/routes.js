@@ -42,6 +42,24 @@ module.exports = function(app) {
 
 	});
 
+	// update a bus
+	app.post('/api/buses/:bus_id', function(req, res) {
+		/*Bus.update({
+			_id : req.params.bus_id
+		}, function(err, bus) {
+			if (err)
+				res.send(err);
+
+			// get and return all the buses after you delete another
+			Bus.find(function(err, buses) {
+				if (err)
+					res.send(err)
+				res.json(buses);
+			});
+		});*/
+		console.log("UPDATE RECEIVED!")
+	});
+
 	// delete a bus
 	app.delete('/api/buses/:bus_id', function(req, res) {
 		Bus.remove({
@@ -60,9 +78,12 @@ module.exports = function(app) {
 	});
 
 	// application -------------------------------------------------------------
-	//res.sendfile(path, {'root': '/path/to/root/directory'});
 	app.get("/emmiter", function(req, res) {
 		res.sendfile('./public/emmiter.html');
+	});
+
+	app.get("/dbadmin", function(req, res) {
+		res.sendfile('./public/dbadmin.html');
 	});
 
 	app.get("/", function(req, res) {
