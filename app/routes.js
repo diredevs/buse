@@ -60,8 +60,13 @@ module.exports = function(app) {
 	});
 
 	// application -------------------------------------------------------------
+	//res.sendfile(path, {'root': '/path/to/root/directory'});
+	app.get("/emmiter", function(req, res) {
+		res.sendfile('./public/emmiter.html');
+	});
+
 	app.get("*", function(req, res) {
-		res.sendfile('../public/old.html'); // load the single view file (angular will handle the page changes on the front-end)
+		res.sendfile('./public/index.html');
 	});
 
 };

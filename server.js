@@ -9,11 +9,11 @@ var port 		= process.env.PORT || 5000;
 mongoose.connect(db.url, db.connectionHandler);
 
 app.configure(function() {
-	app.use(express.static(__dirname + '/public')); 		// set the static files location /public/img will be /img for users
-	app.use(express.logger('dev')); 						// log every request to the console
+	app.use(express.static(__dirname + '/public')); // set the static files location /public
+	app.use(express.logger('dev')); // log every request to the console
 	app.use(express.json());
-	app.use(express.urlencoded());							// pull information from html in POST
-	app.use(express.methodOverride()); 						// simulate DELETE and PUT
+	app.use(express.urlencoded());	// pull information from html in POST
+	app.use(express.methodOverride()); 	// simulate DELETE and PUT
 });
 
 // routes 
@@ -21,4 +21,4 @@ require('./app/routes.js')(app);
 
 // listen (start app with node server.js) 
 app.listen(port);
-console.log("App listening on port" +  port);
+console.log("App listening on port " +  port);
