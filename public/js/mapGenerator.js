@@ -12,17 +12,17 @@ function initialize() {
 	}
 	map = new google.maps.Map(map_canvas, map_options);
 
-	// Bounds for North America
+	// Bounds for UFRN
 	var strictBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(-5.840785,-35.203804),		//southwest
 		new google.maps.LatLng(-5.836772,-35.198761)	//northeast
 	);
 
-	// Listen for the dragend event
+	// Listen for the center_changed event
 	google.maps.event.addListener(map, 'center_changed', function() {
 		if (strictBounds.contains(map.getCenter())) return;
 
-		// We're out of bounds - Move the map back within the bounds
+		// out of bounds - Move the map back within the bounds
 
 		var c = map.getCenter(),
 		x = c.lng(),

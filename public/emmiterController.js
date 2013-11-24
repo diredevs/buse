@@ -1,6 +1,6 @@
-var circularUfrn = angular.module('circularUfrn', []);
+var emmiter = angular.module('emmiter', []);
 
-function mainController($scope, $http) {
+function emmiterController($scope, $http) {
 	$scope.formData = {};
 
 	// when landing on the page, get all buses and show them
