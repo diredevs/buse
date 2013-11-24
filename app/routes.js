@@ -65,7 +65,7 @@ module.exports = function(app) {
 		res.sendfile('./public/emmiter.html');
 	});
 
-	app.get("*", function(req, res) {
+	app.get("/", function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 
