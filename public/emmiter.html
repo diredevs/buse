@@ -38,11 +38,24 @@
         <div id="todo-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
 
-                <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox" ng-repeat="bus in buses">
-                    <label>
-                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.text }} {{ bus.lat }} {{ bus.lng }}
-                    </label>
+                <!-- LOOP OVER THE BUSES IN $scope.buses -->
+                <div>
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th>Name</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>Remove</th>
+                        </tr>
+                        <tr ng-repeat="bus in buses">
+                            <td>{{bus.text}}</td>
+                            <td>{{bus.lat}}</td>
+                            <td>{{bus.lng}}</td>
+                            <td>
+                                <input type="checkbox" ng-click="deleteBus(bus._id)">
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
             </div>
