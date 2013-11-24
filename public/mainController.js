@@ -7,20 +7,12 @@ function mainController($scope, $http) {
 	$http.get('/api/buses')
 		.success(function(data) {
 			$scope.buses = data;
-			console.log(data);
 		})
 		.error(function(data) {
 			console.log('Error: ' + data);
 		});
 
 	$scope.loadBuses = function(){
-
-		//hide the markers and then erase them from the container
-		for (var i = 0; i < markers.length; i++) {
-    		markers[i].setMap(null);
-  		}
-  		markers = [];
-
   		//get the buses position and set markers
 		for(var i=0; i < $scope.buses.length;i++){
 			var marker = new google.maps.Marker({
@@ -40,18 +32,21 @@ function mainController($scope, $http) {
     		markers[i].setMap(null);
   		}
   		markers = [];
-
+  		console.log(following);
 		$scope.loadBuses();
-		
+
 		interval = setInterval(function(){	
 			if(following){
 				console.log("refreshing buses...")
 				$scope.loadBuses();
 			}
 			else{
-				clearInterval(interval);
+				console.log("not following");
 			}
-		}, 5000);	
+		}, 1000);
 	}
 
+	setTimeout(function() {
+    	$scope.loadRefresher();
+	}, 2000);
 }

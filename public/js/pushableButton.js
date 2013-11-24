@@ -1,7 +1,7 @@
 $(document).ready(function(){
   
   var tgBtn = $("#toggleMap");
-  var isPushed = false;
+  var isPushed = true;
   
   tgBtn.on("click", function(){
     if (!isPushed) {

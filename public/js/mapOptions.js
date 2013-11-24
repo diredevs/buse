@@ -1,6 +1,6 @@
 var myPosition;
 var interval;
-var following;
+var following = true;
 
 function markCurrentPosition() {
 	navigator.geolocation.getCurrentPosition(function(position) {
