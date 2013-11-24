@@ -14,15 +14,44 @@ function mainController($scope, $http) {
 		});
 
 	$scope.loadBuses = function(){
+
+		//hide the markers and then erase them from the container
+		for (var i = 0; i < markers.length; i++) {
+    		markers[i].setMap(null);
+  		}
+  		markers = [];
+
+  		//get the buses position and set markers
 		for(var i=0; i < $scope.buses.length;i++){
-			marker = new google.maps.Marker({
+			var marker = new google.maps.Marker({
 				position: {lat : $scope.buses[i].lat,
 					lng : $scope.buses[i].lng},
 	    		map: map,
 	    		icon: './public/img/busMarker.gif',
 	    		title: $scope.buses[i].text
 	  		});
+	  		markers.push(marker);
 		}
+	}
+
+	$scope.loadRefresher = function(){
+		//hide the markers and then erase them from the container
+		for (var i = 0; i < markers.length; i++) {
+    		markers[i].setMap(null);
+  		}
+  		markers = [];
+
+		$scope.loadBuses();
+		
+		interval = setInterval(function(){	
+			if(following){
+				console.log("refreshing buses...")
+				$scope.loadBuses();
+			}
+			else{
+				clearInterval(interval);
+			}
+		}, 5000);	
 	}
 
 }

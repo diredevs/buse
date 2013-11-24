@@ -7,12 +7,10 @@ $(document).ready(function(){
     if (!isPushed) {
     	isPushed = true;
     	following = true;
-    	followMe();
     	tgBtn.addClass("pushed-button");  
     } else {
     	isPushed = false;
     	following = false;
-    	enableMapDrag();
     	tgBtn.removeClass("pushed-button");
     }
   });

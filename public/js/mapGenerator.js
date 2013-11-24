@@ -1,5 +1,6 @@
 var map;
-var marker;
+var markers = [];
+
 function initialize() {
 	var map_canvas = document.getElementById('map_canvas');
 	var map_options = {
