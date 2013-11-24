@@ -1,11 +1,11 @@
-// set up ========================
+// set up 
 var express 	= require('express');
 var app 		= express(); 								// create our app w/ express
 var mongoose	= require('mongoose'); 					// mongoose for mongodb
 var db 			= require('./config/database');
 var port 		= process.env.PORT || 5000;		
 
-// configuration =================
+// configuration 
 mongoose.connect(db.url, db.connectionHandler);
 
 app.configure(function() {
@@ -16,9 +16,9 @@ app.configure(function() {
 	app.use(express.methodOverride()); 						// simulate DELETE and PUT
 });
 
-// routes =========================
+// routes 
 require('./app/routes.js')(app);
 
-// listen (start app with node server.js) ======================================
+// listen (start app with node server.js) 
 app.listen(port);
 console.log("App listening on port" +  port);

@@ -23,9 +23,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
     <script src="core.js"></script>
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>   
-    <script src="mapGenerator.js"></script>
-
 </head>
 <!-- SET THE CONTROLLER AND GET ALL BUSES WITH INITIALIZE FUNCTION -->
 <body ng-controller="mainController">
@@ -38,13 +35,13 @@
         </div>
 
         <!-- TODO LIST -->
-        <div id="bus-list" class="row">
+        <div id="todo-list" class="row">
             <div class="col-sm-4 col-sm-offset-4">
 
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
                 <div class="checkbox" ng-repeat="bus in buses">
                     <label>
-                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.text }}
+                        <input type="checkbox" ng-click="deleteBus(bus._id)"> {{ bus.text }} {{ bus.lat }} {{ bus.lng }}
                     </label>
                 </div>
 
@@ -58,7 +55,10 @@
                     <div class="form-group">
 
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="Create a bus" ng-model="formData.text">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus text" ng-model="formData.text">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus latitude" ng-model="formData.lat">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus longitude" ng-model="formData.lng">
+                        <input type="text" class="form-control input-lg text-center" placeholder="Bus Accessibility" ng-model="formData.handicap">
                     </div>
 
                     <!-- createBus() WILL CREATE NEW Buses -->

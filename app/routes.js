@@ -24,7 +24,9 @@ module.exports = function(app) {
 
 		// create a bus, information comes from AJAX request from Angular
 		Bus.create({
-			text 			: req.body.text,
+			text : req.body.text,
+			lat : req.body.lat,
+			lng : req.body.lng
 
 		}, function(err, bus) {
 			if (err)
@@ -59,7 +61,7 @@ module.exports = function(app) {
 
 	// application -------------------------------------------------------------
 	app.get("*", function(req, res) {
-		res.sendfile('/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+		res.sendfile('../public/old.html'); // load the single view file (angular will handle the page changes on the front-end)
 	});
 
 };
