@@ -28,22 +28,27 @@ function mainController($scope, $http) {
 	}
 
 	$scope.busRefresher = function() {
-		var iterator = 0;
+
 		interval = setInterval(function(){
 			if(following){
 				console.log("refreshing buses...")
-					
-    			markers[iterator].setPosition({
-    				lat: $scope.buses[iterator].lat,
-    				lng: $scope.buses[iterator].lng
-    			});
-    			markers[iterator].setTitle($scope.buses[iterator].text);
-
-    			iterator = iterator+1;
-				iterator = iterator%$scope.buses.length;
+				for(var i = 0; i < $scope.buses.length; i++){
+					markers[i].setPosition({
+    				lat: $scope.buses[i].lat,
+    				lng: $scope.buses[i].lng
+    				});
+    				markers[i].setTitle($scope.buses[i].text);
+				}	
 			}
 			else{
 				console.log("not following");
+				var date = new Date();
+				var hour = date.getHours();
+				var minutes = date.getMinutes();
+				for(var i = 0; i < $scope.buses.length; i++){
+    				markers[i].setTitle("atualizado as "+hour+':'+minutes);
+				}
+
 			}
 		}, 1000);
 	}
