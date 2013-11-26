@@ -16,8 +16,10 @@ function mainController($scope, $http) {
   		//get the buses position and set markers
 		for(var i=0; i < $scope.buses.length;i++){
 			var marker = new google.maps.Marker({
-				position: {lat : $scope.buses[i].lat,
-					lng : $scope.buses[i].lng},
+				position: {
+					lat : $scope.buses[i].lat,
+					lng : $scope.buses[i].lng
+				},
 	    		map: map,
 	    		icon: './public/img/busMarker.gif',
 	    		title: $scope.buses[i].text
@@ -28,15 +30,20 @@ function mainController($scope, $http) {
 	}
 
 	$scope.markersRefresher = function() {
+		for(var i = 0; i < markers.length; i++){
+			markers[i].setMap(null);
+		}
+		markers = [$scope.buses.length];
+		console.log("->"+markers.length);
 		for(var i=0; i < $scope.buses.length;i++){
-			var marker = new google.maps.Marker({
+			var newMarker = new google.maps.Marker({
 				position: {lat : $scope.buses[i].lat,
 					lng : $scope.buses[i].lng},
 	    		map: map,
 	    		icon: './public/img/busMarker.gif',
 	    		title: $scope.buses[i].text
 	  		});
-	  		markers.push(marker);
+	  		markers[i] = newMarker;
 		}
 	}
 
@@ -46,8 +53,10 @@ function mainController($scope, $http) {
 		var minutes = date.getMinutes();
 
 		interval = setInterval(function(){
-			if(markers.length != $scope.buses.length)
+			if(markers.length != $scope.buses.length){
 				$scope.markersRefresher();
+				console.log("oi");
+			}
 
 			if(following){
 				console.log("refreshing buses...")
@@ -72,7 +81,7 @@ function mainController($scope, $http) {
 	}
 
 	//PREVIEW METHOD
-	/*$scope.busMover = function() {
+	$scope.busMover = function() {
 		var length = busPath0.length;
 		var iterator = 0;
 
@@ -91,7 +100,7 @@ function mainController($scope, $http) {
 			iterator = iterator+1;
 			iterator = iterator%busPath0.length;
 		}, 2000);
-	}*/
+	}
 
 	$scope.sendPosition = function() {
 		var person=prompt("Please enter your name","KASINAO");
@@ -103,8 +112,6 @@ function mainController($scope, $http) {
 			$scope.formData.text = person;
 			$scope.formData.lat = myPosition.lat();
 			$scope.formData.lng = myPosition.lng();
-			console.log("lat: "+ $scope.formData.lat);
-			console.log("lng: "+ $scope.formData.lng)
 
 			$http.post('/api/buses/' + person, $scope.formData)
 				.success(function(data) {
@@ -119,6 +126,6 @@ function mainController($scope, $http) {
 
 	setTimeout(function() {
     	$scope.loadBuses();
-    	//$scope.busMover();
+    	$scope.busMover();
 	}, 2000);
 }

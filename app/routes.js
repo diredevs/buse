@@ -47,27 +47,21 @@ module.exports = function(app) {
 		var lat = req.body.lat;
 		var lng = req.body.lng;
 		var text = req.body.text;
-
-		/*Bus.update({
-			"_id": req.params.bus_id}
-			, { lat: lat, lng : lng }
-			,function(error){console.log(error+'oi');});*/
 		
-		Bus.findOneAndUpdate({
-			"text": text}
-			, { lat: lat, lng : lng, text : text}
-			, {upsert : true}
-		, function(err, bus) {
-			if (err)
-				res.send(err);
-
-			Bus.find(function(err, buses) {
+		Bus.findOneAndUpdate(
+			{"text": text}, 
+			{lat: lat, lng : lng, text : text},
+			{upsert : true},
+			function(err, bus) {
 				if (err)
-					res.send(err)
-				res.json(buses);
+					res.send(err);
+				Bus.find(function(err, buses) {
+					if (err)
+						res.send(err)
+					res.json(buses);
+				});
 			});
-		});
-		console.log("UPDATE RECEIVED!")
+		console.log("UPDATE RECEIVED!");
 	});
 
 	// delete a bus
