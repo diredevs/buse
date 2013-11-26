@@ -54,13 +54,13 @@ function mainController($scope, $http) {
 		var minutes = date.getMinutes();
 
 		interval = setInterval(function(){
-			$http.get('/api/buses')
+			/*$http.get('/api/buses')
 				.success(function(data) {
 					$scope.buses = data;
 				})
 				.error(function(data) {
 					console.log('Error: ' + data);
-				});
+				});*/
 
 			if(markers.length != $scope.buses.length){
 				$scope.markersRefresher();
@@ -86,7 +86,29 @@ function mainController($scope, $http) {
 				}
 
 			}
-		}, 5000);
+		}, 300);
+	}
+
+	$scope.sendPosition = function() {
+		var person=prompt("Please enter your name","Nome");
+		getCurrentPosition();
+
+		var interval  = setInterval(function(){
+			getCurrentPosition();
+		
+			$scope.formData.text = person;
+			$scope.formData.lat = myPosition.lat();
+			$scope.formData.lng = myPosition.lng();
+
+			$http.post('/api/buses/' + person, $scope.formData)
+				.success(function(data) {
+					$scope.buses = data;
+					console.log(data);
+				})
+				.error(function(data) {
+					console.log('Error: ' + data);
+				});
+		}, 4000);
 	}
 
 	//PREVIEW METHOD
@@ -108,11 +130,21 @@ function mainController($scope, $http) {
 
 			iterator = iterator+1;
 			iterator = iterator%busPath0.length;
-		}, 3000);
+		}, 1000);
 	}
 
 	setTimeout(function() {
     	$scope.loadBuses();
     	$scope.busMover();
 	}, 2000);
+
+	var ref = setInterval(function(){
+		$http.get('/api/buses')
+				.success(function(data) {
+					$scope.buses = data;
+				})
+				.error(function(data) {
+					console.log('Error: ' + data);
+				});
+			}, 4000);
 }
