@@ -33,31 +33,19 @@
                 <form>
                     <div class="form-group">
                         <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus _id" ng-model="formData._id">
-                        <button type="submit" class="btn btn-primary btn-lg" ng-click="autoUpdateBus()">
+                       <!-- <input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="formData._id">-->
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="sendPosition()">
                             <a href="#" title="Rastrear-me"><img src="./public/img/target_30x30.png" alt="target" /></a>
                         </button>
                     </div>
 
                 </form>
                 
-
-                <h2>Manual update. :(</h2>
-                <form>
-                    <div class="form-group">
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus _id" ng-model="formData._id">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus latitude" ng-model="formData.lat">
-                        <input type="text" class="form-control input-lg text-center" placeholder="Bus longitude" ng-model="formData.lng">
-                    </div>
-
-                    <!-- updateBus() WILL CREATE NEW Buses -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="updateBus()">Update</button>
-                </form>
             </div>
         </div>
 
     </div>
-
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="./public/js/mapOptions.js"></script> 
 </body>
 </html>

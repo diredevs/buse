@@ -33,8 +33,9 @@ function mainController($scope, $http) {
 		for(var i = 0; i < markers.length; i++){
 			markers[i].setMap(null);
 		}
-		markers = [$scope.buses.length];
-		console.log("->"+markers.length);
+
+		markers.length = $scope.buses.length;
+
 		for(var i=0; i < $scope.buses.length;i++){
 			var newMarker = new google.maps.Marker({
 				position: {lat : $scope.buses[i].lat,
@@ -53,6 +54,14 @@ function mainController($scope, $http) {
 		var minutes = date.getMinutes();
 
 		interval = setInterval(function(){
+			$http.get('/api/buses')
+				.success(function(data) {
+					$scope.buses = data;
+				})
+				.error(function(data) {
+					console.log('Error: ' + data);
+				});
+
 			if(markers.length != $scope.buses.length){
 				$scope.markersRefresher();
 				console.log("oi");
@@ -77,7 +86,7 @@ function mainController($scope, $http) {
 				}
 
 			}
-		}, 1000);
+		}, 5000);
 	}
 
 	//PREVIEW METHOD
@@ -99,29 +108,7 @@ function mainController($scope, $http) {
 
 			iterator = iterator+1;
 			iterator = iterator%busPath0.length;
-		}, 2000);
-	}
-
-	$scope.sendPosition = function() {
-		var person=prompt("Please enter your name","KASINAO");
-		getCurrentPosition();
-
-		var interval  = setInterval(function(){
-			getCurrentPosition();
-		
-			$scope.formData.text = person;
-			$scope.formData.lat = myPosition.lat();
-			$scope.formData.lng = myPosition.lng();
-
-			$http.post('/api/buses/' + person, $scope.formData)
-				.success(function(data) {
-					$scope.buses = data;
-					console.log(data);
-				})
-				.error(function(data) {
-					console.log('Error: ' + data);
-				});
-		}, 2000);
+		}, 3000);
 	}
 
 	setTimeout(function() {

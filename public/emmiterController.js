@@ -4,15 +4,25 @@ function emmiterController($scope, $http) {
 	$scope.formData = {};
 
 	// update a bus after checking it
-	$scope.updateBus = function() {
-		$http.post('/api/buses/'+$scope.formData._id, $scope.formData)
-			.success(function(data) {
-				$('input').val('');
-				$scope.buses = data;
-				console.log(data);
-			})
-			.error(function(data) {
-				console.log('Error: ' + data);
-			});
-	};
+	$scope.sendPosition = function() {
+		var person=prompt("Please enter your name","Nome");
+		getCurrentPosition();
+
+		var interval  = setInterval(function(){
+			getCurrentPosition();
+		
+			$scope.formData.text = person;
+			$scope.formData.lat = myPosition.lat();
+			$scope.formData.lng = myPosition.lng();
+
+			$http.post('/api/buses/' + person, $scope.formData)
+				.success(function(data) {
+					$scope.buses = data;
+					console.log(data);
+				})
+				.error(function(data) {
+					console.log('Error: ' + data);
+				});
+		}, 4000);
+	}
 }
