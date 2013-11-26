@@ -7,7 +7,7 @@ function initialize() {
 		disableDefaultUI: true,
 		center: new google.maps.LatLng(-5.837605, -35.203034),
 		zoom: 16,
-		minZoom: 15,
+		minZoom: 10,
 		maxZoom: 17,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}

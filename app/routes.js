@@ -44,19 +44,29 @@ module.exports = function(app) {
 
 	// update a bus
 	app.post('/api/buses/:bus_id', function(req, res) {
+		var lat = req.body.lat;
+		var lng = req.body.lng;
+		var text = req.body.text;
+
 		/*Bus.update({
-			_id : req.params.bus_id
-		}, function(err, bus) {
+			"_id": req.params.bus_id}
+			, { lat: lat, lng : lng }
+			,function(error){console.log(error+'oi');});*/
+		
+		Bus.findOneAndUpdate({
+			"text": text}
+			, { lat: lat, lng : lng, text : text}
+			, {upsert : true}
+		, function(err, bus) {
 			if (err)
 				res.send(err);
 
-			// get and return all the buses after you delete another
 			Bus.find(function(err, buses) {
 				if (err)
 					res.send(err)
 				res.json(buses);
 			});
-		});*/
+		});
 		console.log("UPDATE RECEIVED!")
 	});
 
