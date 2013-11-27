@@ -11,7 +11,8 @@
     "chai": "~1.4.2",
     "mocha": "*",
     "coveralls": "~2.5.0",
-    "mocha-lcov-reporter": "0.0.1"
+    "mocha-lcov-reporter": "0.0.1",
+    "should": ">= 0.0.1"
   },
   "scripts": {
     "test": "make test"

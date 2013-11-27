@@ -29,6 +29,7 @@ function mainController($scope, $http) {
 		$scope.busRefresher();
 	}
 
+	//olhar aqui para corrigir delay no desenho durante requisições http
 	$scope.markersRefresher = function() {
 		for(var i = 0; i < markers.length; i++){
 			markers[i].setMap(null);
@@ -148,3 +149,6 @@ function mainController($scope, $http) {
 				});
 			}, 4000);
 }
+
+//lembrar de tratar erros de http pra nao crashar a aplicação client side
+//setInterval com while true para informaççao recebida, pode ser uma opção!
