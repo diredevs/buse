@@ -11,7 +11,12 @@ test-w:
 				--watch
 
 test-cov: lib-cov
-			@MYPROJ_COVERAGE=1 $(MAKE) 	test REPORTER=html-cov > ./node_modules/coveralls/bin/coveralls.js
+			@MYPROJ_COVERAGE=1 $(MAKE) 	test REPORTER=html-cov > coverage.html-cov
+
+test-coveralls:
+			@NODE_ENV=test ./node_modules/.bin/istanbul cover \
+			./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && \
+				cat ./coverage/lcov.info | ./bin/coveralls.js --verbose
 
 lib-cov:
 		@jscoverage lib lib-cov
