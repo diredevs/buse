@@ -1,5 +1,4 @@
 script:
-  - npm install mocha 
   - make test
 language: node_js
 node_js:
