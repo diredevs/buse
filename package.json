@@ -9,7 +9,7 @@
     "mongoose": "~3.6.2",
     "mongodb": "1.1.11",
     "chai": "~1.4.2",
-    "mocha": "*",
+    "mocha": "1.9",
     "coveralls": "~2.5.0",
     "mocha-lcov-reporter": "0.0.1",
     "should": ">= 0.0.1"
