@@ -1,3 +1,3 @@
-module.exports = process.env.QUICKSORT_COV
-  ? require('./lib-cov/quicksort')
-  : require('./lib/quicksort')
+module.exports = process.env.MYPROJ_COVERAGE
+  ? require('./lib-cov/myproj')
+  : require('./lib/myproj')
