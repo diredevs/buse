@@ -1,6 +1,6 @@
 script:
   - npm install mocha 
-  - make test
+  - make test-coveralls
 language: node_js
 node_js:
   - "0.10"
