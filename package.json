@@ -17,7 +17,7 @@
     "should": ">= 0.0.1"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test-cov"
   },
   "engines": {
     "node": "0.10.x",
