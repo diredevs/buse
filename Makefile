@@ -11,7 +11,7 @@ test-w:
 				--watch
 
 test-cov: lib-cov
-			@MYPROJ_COVERAGE=1 $(MAKE) 	test REPORTER=html-cov > coverage.html
+			@MYPROJ_COVERAGE=1 $(MAKE) 	test REPORTER=html-cov > ./node_modules/coveralls/bin/coveralls.js
 
 lib-cov:
 		@jscoverage lib lib-cov
