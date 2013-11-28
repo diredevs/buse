@@ -15,7 +15,7 @@ function mainController($scope, $http) {
 	$scope.getIcon = function (pos) {
 		var resp;
 		if($scope.buses[pos].text == "cadeirante")
-	    	resp = "./public/img/busBlueMarker.png"
+	    	resp = "./public/img/busBlueMarker.gif"
 	    else
 	    	resp = "./public/img/busMarker.gif"
 	    return resp;
