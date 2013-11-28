@@ -12,16 +12,26 @@ function mainController($scope, $http) {
 			console.log('Error: ' + data);
 		});
 
+	$scope.getIcon = function (pos) {
+		var resp;
+		if($scope.buses[pos].text == "cadeirante")
+	    	resp = "./public/img/busBlueMarker.png"
+	    else
+	    	resp = "./public/img/busMarker.gif"
+	    return resp;
+	}
+
 	$scope.loadBuses = function(){
   		//get the buses position and set markers
 		for(var i=0; i < $scope.buses.length;i++){
+			var img = $scope.getIcon(i);
 			var marker = new google.maps.Marker({
 				position: {
 					lat : $scope.buses[i].lat,
 					lng : $scope.buses[i].lng
 				},
 	    		map: map,
-	    		icon: './public/img/busMarker.gif',
+	    		icon: img,
 	    		title: $scope.buses[i].text
 	  		});
 	  		markers.push(marker);
@@ -38,11 +48,12 @@ function mainController($scope, $http) {
 		markers.length = $scope.buses.length;
 
 		for(var i=0; i < $scope.buses.length;i++){
+			var newImg = $scope.getIcon(i);
 			var newMarker = new google.maps.Marker({
 				position: {lat : $scope.buses[i].lat,
 					lng : $scope.buses[i].lng},
 	    		map: map,
-	    		icon: './public/img/busMarker.gif',
+	    		icon: newImg,
 	    		title: $scope.buses[i].text
 	  		});
 	  		markers[i] = newMarker;
@@ -55,17 +66,9 @@ function mainController($scope, $http) {
 		var minutes = date.getMinutes();
 
 		interval = setInterval(function(){
-			/*$http.get('/api/buses')
-				.success(function(data) {
-					$scope.buses = data;
-				})
-				.error(function(data) {
-					console.log('Error: ' + data);
-				});*/
 
 			if(markers.length != $scope.buses.length){
 				$scope.markersRefresher();
-				console.log("oi");
 			}
 
 			if(following){
