@@ -7,14 +7,14 @@ function initialize() {
 		disableDefaultUI: true,
 		center: new google.maps.LatLng(-5.837605, -35.203034),
 		zoom: 16,
-		minZoom: 10,
+		minZoom: 3,
 		maxZoom: 17,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	map = new google.maps.Map(map_canvas, map_options);
 
 	// Bounds for UFRN
-	var strictBounds = new google.maps.LatLngBounds(
+	/*var strictBounds = new google.maps.LatLngBounds(
 		new google.maps.LatLng(-5.840785,-35.203804),		//southwest
 		new google.maps.LatLng(-5.836772,-35.198761)	//northeast
 	);
@@ -39,7 +39,7 @@ function initialize() {
 		if (y > maxY) y = maxY;
 
 		map.setCenter(new google.maps.LatLng(y, x));
-	});
+	});*/
 
 
 	//set map center to the user location and show its marker
