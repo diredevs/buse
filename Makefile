@@ -2,7 +2,7 @@ REPORTER = spec
 HTML_FILE = /home/roger/Documents/Buse/coverage/coverage1.html
 
 test:
-		@NODE_ENV=test ./node_modules/.bin/mocha \
+		@NODE_ENV=testLocal ./node_modules/.bin/mocha \
 				--reporter $(REPORTER) \
 				--require should \
 

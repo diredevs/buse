@@ -49,7 +49,7 @@ module.exports = function(app) {
 		var text = req.body.text;
 		
 		Bus.findOneAndUpdate(
-			{"text": text}, 
+			{text: text}, 
 			{lat: lat, lng : lng, text : text},
 			{upsert : true},
 			function(err, bus) {
@@ -57,11 +57,10 @@ module.exports = function(app) {
 					res.send(err);
 				Bus.find(function(err, buses) {
 					if (err)
-						res.send(err)
-					res.json(buses);
+						res.status(500);
+					res.status(200);
 				});
 			});
-		console.log("UPDATE RECEIVED!");
 	});
 
 	// delete a bus
