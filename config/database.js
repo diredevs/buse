@@ -1,7 +1,7 @@
 // connect to mongoDB database on modulus.io
 var url;
 
-if(process.env.NODE_ENV == 'test')
+if(process.env.NODE_ENV == 'testLocal')
 	url =  'localhost:27017/testdb';
 else
 	url = 'mongodb://piu:piu@mongo.onmodulus.net:27017/ryte2jaG'
