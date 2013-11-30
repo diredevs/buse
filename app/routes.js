@@ -15,7 +15,7 @@ module.exports = function(app) {
 			if (err)
 				res.send(err)
 
-			res.json(buses); // return all buses in JSON format
+			res.status(200).json(buses); // return all buses in JSON format
 		});
 	});
 

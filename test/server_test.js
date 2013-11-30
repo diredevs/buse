@@ -1,6 +1,9 @@
 var http = require('http');
-var app  = require(__dirname + './../server.js');
+var server  = require(__dirname + './../server.js');
 var port = 5000;
+var should = require('should');
+var supertest = require('supertest');
+var api = supertest('http://localhost:5000');
 
 function defaultGetOptions(path) {
   var options = {
@@ -15,10 +18,10 @@ function defaultGetOptions(path) {
   return options;
 }
 
-describe('app', function () {
+describe('server', function () {
  
   	before (function (done) {
-	    app.listen(port, function (err, result) {
+	    server.listen(port, function (err, result) {
 			if (err) {
 				done(err);
 			} else {
@@ -27,11 +30,11 @@ describe('app', function () {
 		});
  
 		after(function (done) {
-			app.close();
+			server.close();
 	  	});
 	 
 	  	it('should exist', function (done) {
-		    should.exist(app);
+		    should.exist(server);
 		    done();
 	  	});
 	 
@@ -43,4 +46,20 @@ describe('app', function () {
 		    });
 	  	}); 
 	});
+
+
 });
+
+describe('GET', function() {
+	it('returns buses as JSON', function(done) {
+	    api.get('/api/buses')
+	    .expect(200)
+	    .expect('Content-Type', /json/)
+	    .end(function(err, res) {
+			if (err) return done(err);
+			res.body.should.be.instanceof(Array);
+			done();
+	    });
+	});
+});
+

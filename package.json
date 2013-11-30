@@ -23,6 +23,7 @@
     "blanket": "1.1.5",
     "mocha-lcov-reporter": "0.0.1",
     "chai": "~1.4.2",
-    "should": ">= 0.0.1"
+    "should": ">= 0.0.1",
+    "supertest": "0.8.2"
   }
 }
