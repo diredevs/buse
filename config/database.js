@@ -1,4 +1,5 @@
 // connect to mongoDB database on modulus.io
+// or use local database
 var url;
 
 if(process.env.NODE_ENV == 'testLocal')

@@ -1,14 +1,9 @@
 // set up 
 var express 	= require('express');
-var app 		= express(); 								// create our app w/ express
-var mongoose	= require('mongoose'); 					// mongoose for mongodb
-var db 			= require('./config/database');
-var port 		= process.env.PORT || 5000;	
+var app 		= express(); // create our app w/ express	
 var path		= __dirname; //root path	
 
 // configuration 
-mongoose.connect(db.url, db.connectionHandler);
-
 app.configure(function() {
 	app.use(express.static(path));
 	app.use(express.logger('dev')); // log every request to the console
@@ -17,12 +12,14 @@ app.configure(function() {
 	app.use(express.methodOverride()); 	// simulate DELETE and PUT
 });
 
-// routes 
-require('./app/routes.js')(app);
-
-// listen (start app with node server.js) 
-app.listen(port);
-console.log("App listening on port " +  port);
+function start() {
+	// routes 
+	require('./app/routes.js')(app);
+	// listen (start app with node server.js) 
+	app.listen(process.env.PORT || 5000);
+	console.log("Server listening for incoming conections..");
+}
 
 //************************
-exports.app = app;
+exports.start = start;
+exports.server = app;

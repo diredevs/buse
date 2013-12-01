@@ -1,41 +1,11 @@
 var http = require('http');
-var server  = require(__dirname + './../server.js');
+var server  = require(__dirname + './../index.js');
 var port = 5000;
 var should = require('should');
 var supertest = require('supertest');
 var api = supertest('http://localhost:5000');
 
 var bus;
-
-describe('server', function () {
- 
-  	before (function (done) {
-	    server.listen(port, function (err, result) {
-			if (err) {
-				done(err);
-			} else {
-				done();
-			}
-		});
- 
-		after(function (done) {
-			server.close();
-	  	});
-	 
-	  	it('should exist', function (done) {
-		    should.exist(server);
-		    done();
-	  	});
-	 
-	  	it('should be listening at localhost:5000', function (done) {
-		    var headers = defaultGetOptions('/');
-		    http.get(headers, function (res) {
-		      res.statusCode.should.eql(404);
-		      done();
-		    });
-	  	}); 
-	});
-});
 
 describe('GET BUSES LIST', function() {
 	it('should return buses array as JSON', function(done) {
@@ -69,7 +39,7 @@ describe('ADD A BUS', function() {
 });
 
 describe('UPDATE A BUS POSITION', function() {
-	it('should return buses array with the new bus inserted at last position', function(done) {
+	it('should return status 200', function(done) {
 		bus.lat = 84;
 		bus.lng = 84;
 	    api.post('/api/buses/' + bus.text, bus)
@@ -82,3 +52,16 @@ describe('UPDATE A BUS POSITION', function() {
 	    });
 	});
 });
+/*
+describe('DELETE A BUS POSITION', function() {
+	it('should return status 200', function(done) {
+	    api.delete('/api/buses/' + bus.id)
+	    .expect(200)
+	    .expect('Content-Type', /json/)
+	    .end(function(err, res) {
+			if (err) 
+				return done(err);
+			done();
+	    });
+	});
+});*/
