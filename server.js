@@ -6,7 +6,7 @@ var path		= __dirname; //root path
 // configuration 
 app.configure(function() {
 	app.use(express.static(path));
-	app.use(express.logger('dev')); // log every request to the console
+	//app.use(express.logger('dev')); // log every request to the console
 	app.use(express.json());
 	app.use(express.urlencoded());	// pull information from html in POST
 	app.use(express.methodOverride()); 	// simulate DELETE and PUT

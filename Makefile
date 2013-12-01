@@ -1,5 +1,4 @@
 REPORTER = spec
-HTML_FILE = /home/roger/Documents/Buse/coverage/coverage1.html
 
 test:
 		@NODE_ENV=testLocal ./node_modules/.bin/mocha \
