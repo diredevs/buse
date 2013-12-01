@@ -64,7 +64,7 @@ module.exports = function(app) {
 	});
 
 	// delete a bus
-	app.delete('/api/buses/:bus_id', function(req, res) {
+	app.del('/api/buses/:bus_id', function(req, res) {
 		Bus.remove({
 			_id : req.params.bus_id
 		}, function(err, bus) {

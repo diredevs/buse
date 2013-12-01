@@ -1,8 +1,8 @@
 var should = require('should'); 
 var assert = require('assert');
-var request = require('supertest');  
-var mongoose = require('mongoose');
-var server  = require(__dirname + './../index.js');
+var request = require('supertest');
+var server = require(__dirname+'./../index.js');
+
 
 describe('Routing', function() {
   var url = 'http://localhost:5000';
@@ -59,7 +59,7 @@ describe('Routing', function() {
 
     it('should return status 200 after DELETING a bus', function(done) {
       request(url)
-        .post('/api/buses/' + bus.id)
+        .del('/api/buses/' + bus.id)
         .end(function(err, res) {
             if (err) {
               throw err;

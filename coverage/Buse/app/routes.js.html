@@ -183,16 +183,16 @@
     <h1>Code coverage report for <span class="entity">Buse/app/routes.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">65% <small>(26 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">77.5% <small>(31 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">35.71% <small>(5 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">50% <small>(7 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">60% <small>(9 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">80% <small>(12 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">65% <small>(26 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">77.5% <small>(31 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">Buse/app/</a> &#187; routes.js</div>
@@ -340,38 +340,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -455,18 +455,18 @@ module.exports = function(app) {
 	});
 &nbsp;
 	// delete a bus
-	app.delete('/api/buses/:bus_id', <span class="fstat-no" title="function not covered" >function(req, res) {</span>
-<span class="cstat-no" title="statement not covered" >		Bus.remove({</span>
+	app.delete('/api/buses/:bus_id', function(req, res) {
+		Bus.remove({
 			_id : req.params.bus_id
-		}, <span class="fstat-no" title="function not covered" >function(err, bus) {</span>
-<span class="cstat-no" title="statement not covered" >			if (err)</span>
+		}, function(err, bus) {
+			<span class="missing-if-branch" title="if path not taken"" >I</span>if (err)
 <span class="cstat-no" title="statement not covered" >				res.send(err);</span>
 &nbsp;
 			// get and return all the buses after you delete another
-<span class="cstat-no" title="statement not covered" >			Bus.find(<span class="fstat-no" title="function not covered" >function(err, buses) {</span></span>
-<span class="cstat-no" title="statement not covered" >				if (err)</span>
+			Bus.find(function(err, buses) {
+				<span class="missing-if-branch" title="if path not taken"" >I</span>if (err)
 <span class="cstat-no" title="statement not covered" >					res.send(err)</span>
-<span class="cstat-no" title="statement not covered" >				res.json(buses);</span>
+				res.json(buses);
 			});
 		});
 	});
@@ -489,7 +489,7 @@ module.exports = function(app) {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 01 2013 15:58:17 GMT-0300 (BRT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 01 2013 18:11:37 GMT-0300 (BRT)</div>
 </div>
 
 <script src="../../prettify.js"></script>
