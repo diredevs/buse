@@ -68,6 +68,18 @@ describe('Routing', function() {
             done();
         });
     });
+
+    it('should return status 404 after DELETING a bus that does not exist', function(done) {
+      request(url)
+        .del('/api/buses/' + 8)
+        .end(function(err, res) {
+            if (err) {
+              throw err;
+            }
+            res.should.have.status(404);
+            done();
+        });
+    });
   });
 
   describe('Views request', function(){

@@ -69,24 +69,26 @@ module.exports = function(app) {
 			_id : req.params.bus_id
 		}, function(err, bus) {
 			if (err)
-				res.send(err);
+				return res.status(404).send(err);
+			else
+				res.status(200).send();
 
 			// get and return all the buses after you delete another
-			Bus.find(function(err, buses) {
+			/*Bus.find(function(err, buses) {
 				if (err)
-					res.send(err)
-				res.json(buses);
-			});
+					res.status(404).send(err)
+				res.status(200).json(buses);
+			});*/
 		});
 	});
 
 	// application -------------------------------------------------------------
 	app.get("/emmiter", function(req, res) {
-		res.sendfile('./public/emmiter.html');
+		res.status(200).sendfile('./public/emmiter.html');
 	});
 
 	app.get("/dbadmin", function(req, res) {
-		res.sendfile('./public/dbadmin.html');
+		res.status(200).sendfile('./public/dbadmin.html');
 	});
 
 	app.get("/", function(req, res) {
