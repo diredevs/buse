@@ -6,7 +6,7 @@ var server = require(__dirname+'./../index.js');
 
 describe('Routing', function() {
   var url = 'http://localhost:5000';
-  var bus = {text: 'circular', lat: 80, lng: 80};
+  var bus = {text: 'busao de teste', lat: 80, lng: 80};
 
   before(function(done) {
     bus.id = request(url).post('/api/buses', bus)
@@ -14,12 +14,12 @@ describe('Routing', function() {
         if (err) 
           return done(err);
         res.body.should.be.instanceof(Array);
-        bus.id = res.body[0]._id;
+        bus.id = res.body[res.body.length -1]._id;
         done();
       });
   });
 
-  describe('Buses operations', function() {
+  describe('API', function() {
     it('should return a json containing an array of buses', function(done){
       request(url)
         .get('/api/buses')
@@ -68,6 +68,43 @@ describe('Routing', function() {
             done();
         });
     });
+  });
 
+  describe('Views request', function(){
+    it('should return status 200 when requesting the main view', function(done) {
+      request(url)
+        .get('/')
+        .end(function(err, res) {
+          if(err){
+            throw err;
+          }
+          res.should.have.status(200);
+          done();
+        });
+    });
+
+    it('should return status 200 when requesting the emmiter view', function(done) {
+      request(url)
+        .get('/emmiter')
+        .end(function(err, res) {
+          if(err){
+            throw err;
+          }
+          res.should.have.status(200);
+          done();
+        });
+    });
+
+    it('should return status 200 when requesting the database view', function(done) {
+      request(url)
+        .get('/dbadmin')
+        .end(function(err, res) {
+          if(err){
+            throw err;
+          }
+          res.should.have.status(200);
+          done();
+        });
+    });
   });
 });

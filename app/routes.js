@@ -1,4 +1,4 @@
-//load the models
+	//load the models
 var Bus = require('./models/bus');
 
 //expose the routes to our app
@@ -90,7 +90,7 @@ module.exports = function(app) {
 	});
 
 	app.get("/", function(req, res) {
-		res.sendfile('./public/index.html');
+		res.status(200).sendfile('./public/index.html');
 	});
 
 };
