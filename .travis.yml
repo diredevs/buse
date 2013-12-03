@@ -1,6 +1,8 @@
 script:
   - npm install mocha 
   - make test-coveralls
+services:
+  - mongodb
 language: node_js
 node_js:
   - "0.10"

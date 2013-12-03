@@ -9,29 +9,10 @@ describe('Routing', function() {
   var bus = {text: 'busao de teste', lat: 80, lng: 80};
 
   before(function(done) {
-    bus.id = request(url).post('/api/buses', bus)
-      .end(function(err, res) {
-        if (err) 
-          return done(err);
-        res.body.should.be.instanceof(Array);
-        bus.id = res.body[res.body.length -1]._id;
-        done();
-      });
+    done();
   });
 
-  describe('API', function() {
-    it('should return a json containing an array of buses', function(done){
-      request(url)
-        .get('/api/buses')
-        .expect(200)
-        .expect('Content-Type', /json/)
-        .end(function(err, res){
-          if(err)
-            return done(err)
-          res.body.should.be.instanceof(Array);
-          done();
-        });
-    }); 
+  describe('API', function() { 
 
     it('should return status 200 after CREATING a bus', function(done) {
       request(url)
@@ -42,6 +23,22 @@ describe('Routing', function() {
             }
             res.should.have.status(200);
             done();
+        });
+    });
+
+    it('should return a json containing an array of buses', function(done){
+      request(url)
+        .get('/api/buses')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res){
+          if(err)
+            return done(err)
+          res.body.should.be.instanceof(Array);
+          //assign the id to our bus, so we can delete it later.
+          var id = res.body[0]._id;
+          bus.id = id;
+          done();
         });
     });
 
@@ -71,7 +68,7 @@ describe('Routing', function() {
 
     it('should return status 404 after DELETING a bus that does not exist', function(done) {
       request(url)
-        .del('/api/buses/' + 8)
+        .del('/api/buses/' + bus.id)
         .end(function(err, res) {
             if (err) {
               throw err;

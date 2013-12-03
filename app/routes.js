@@ -65,13 +65,16 @@ module.exports = function(app) {
 
 	// delete a bus
 	app.del('/api/buses/:bus_id', function(req, res) {
-		Bus.remove({
-			_id : req.params.bus_id
-		}, function(err, bus) {
-			if (err)
-				return res.status(404).send(err);
-			else
-				res.status(200).send();
+		Bus.findByIdAndRemove(req.params.bus_id, function(err, bus) {
+			if (err){
+				res.status(404).send(err);
+			}
+			else{
+				if(bus != null)
+					res.status(200).send();
+				else
+					res.status(404).send();
+			}
 
 			// get and return all the buses after you delete another
 			/*Bus.find(function(err, buses) {
