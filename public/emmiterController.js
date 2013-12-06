@@ -11,7 +11,7 @@ function emmiterController($scope, $http) {
 		var interval  = setInterval(function(){
 			getCurrentPosition();
 		
-			$scope.formData.text = person;
+			$scope.formData.nome = person;
 			$scope.formData.lat = myPosition.lat();
 			$scope.formData.lng = myPosition.lng();
 

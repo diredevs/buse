@@ -6,17 +6,20 @@ var server = require(__dirname+'./../index.js');
 
 describe('Routing', function() {
   var url = 'http://localhost:5000';
-  var bus = {text: 'busao de teste', lat: 80, lng: 80};
+  var bus = {nome: 'busao', lat: 80, lng: 80};
 
   before(function(done) {
     done();
   });
 
-  describe('API', function() { 
+  describe('API - No errors path', function() { 
 
     it('should return status 200 after CREATING a bus', function(done) {
       request(url)
-        .post('/api/buses', bus)
+        .post('/api/buses')
+        .send({ nome: bus.nome})
+        .send({ lat: bus.lat })
+        .send({ lng: bus.lng })
         .end(function(err, res) {
             if (err) {
               throw err;
@@ -44,7 +47,10 @@ describe('Routing', function() {
 
     it('should return status 200 after UPDATING a bus', function(done) {
       request(url)
-        .post('/api/buses/' + bus.text, bus)
+        .patch('/api/buses/' + bus.nome)
+        .send({ lat: bus.lat })
+        .send({ lng: bus.lng })
+        .send({ nome: bus.nome})
         .end(function(err, res) {
             if (err) {
               throw err;
@@ -80,6 +86,7 @@ describe('Routing', function() {
   });
 
   describe('Views request', function(){
+
     it('should return status 200 when requesting the main view', function(done) {
       request(url)
         .get('/')

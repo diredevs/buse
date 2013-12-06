@@ -183,7 +183,7 @@
     <h1>Code coverage report for <span class="entity">Buse/app/routes.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">87.18% <small>(34 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">83.33% <small>(30 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">57.14% <small>(8 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -192,7 +192,7 @@
         Functions: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">87.18% <small>(34 / 39)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">83.33% <small>(30 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
     </h2>
     <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">Buse/app/</a> &#187; routes.js</div>
@@ -291,15 +291,7 @@
 90
 91
 92
-93
-94
-95
-96
-97
-98
-99
-100
-101</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+93</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,21 +300,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -346,19 +332,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -408,24 +392,18 @@ module.exports = function(app) {
 	// api ---------------------------------------------------------------------
 	// get all buses
 	app.get('/api/buses', function(req, res) {
-&nbsp;
-		// use mongoose to get all buses in the database
 		Bus.find(function(err, buses) {
-&nbsp;
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 			<span class="missing-if-branch" title="if path not taken"" >I</span>if (err)
-<span class="cstat-no" title="statement not covered" >				res.send(err)</span>
-&nbsp;
+<span class="cstat-no" title="statement not covered" >				res.status(500).send(err)</span>
 			res.status(200).json(buses); // return all buses in JSON format
 		});
 	});
 &nbsp;
 	// create bus and send back all buses after creation
 	app.post('/api/buses', function(req, res) {
-&nbsp;
 		// create a bus, information comes from AJAX request from Angular
 		Bus.create({
-			text 	: req.body.text,
+			text 	: req.body.nome,
 			lat 	: req.body.lat,
 			lng 	: req.body.lng
 &nbsp;
@@ -444,22 +422,20 @@ module.exports = function(app) {
 	});
 &nbsp;
 	// update a bus
-	app.post('/api/buses/:bus_id', function(req, res) {
-		var lat = req.body.lat;
-		var lng = req.body.lng;
-		var text = req.body.text;
-		
-		Bus.findOneAndUpdate(
-			{text: text}, 
-			{lat: lat, lng : lng, text : text},
+	app.patch('/api/buses/:bus_id', function(req, res) {	
+		Bus.update(
+			{text: req.body.nome}, 
+			{lat: req.body.lat, lng : req.body.lng},
 			{upsert : true},
 			function(err, bus) {
-				<span class="missing-if-branch" title="else path not taken"" >E</span>if (err)
-					res.send(err);
+				<span class="missing-if-branch" title="if path not taken"" >I</span>if (err){
+<span class="cstat-no" title="statement not covered" >					res.status(500).send(err);</span>
+				}
 				Bus.find(function(err, buses) {
-					<span class="missing-if-branch" title="if path not taken"" >I</span>if (err)
-<span class="cstat-no" title="statement not covered" >						res.status(500);</span>
-					res.status(200);
+					<span class="missing-if-branch" title="if path not taken"" >I</span>if (err){
+<span class="cstat-no" title="statement not covered" >						res.status(500).send();</span>
+					}
+					res.status(200).send();
 				});
 			});
 	});
@@ -468,7 +444,7 @@ module.exports = function(app) {
 	app.del('/api/buses/:bus_id', function(req, res) {
 		Bus.findByIdAndRemove(req.params.bus_id, function(err, bus) {
 			<span class="missing-if-branch" title="if path not taken"" >I</span>if (err){
-<span class="cstat-no" title="statement not covered" >				res.status(404).send(err);</span>
+<span class="cstat-no" title="statement not covered" >				res.status(500).send(err);</span>
 			}
 			else{
 				if(bus != null)
@@ -504,7 +480,7 @@ module.exports = function(app) {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 03 2013 11:36:40 GMT-0300 (BRT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 04 2013 01:12:35 GMT-0300 (BRT)</div>
 </div>
 
 <script src="../../prettify.js"></script>
