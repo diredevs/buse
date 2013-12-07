@@ -47,7 +47,7 @@ describe('Routing', function() {
 
     it('should return status 200 after UPDATING a bus', function(done) {
       request(url)
-        .patch('/api/buses/' + bus.nome)
+        .put('/api/buses/' + bus.nome)
         .send({ lat: bus.lat })
         .send({ lng: bus.lng })
         .send({ nome: bus.nome})
