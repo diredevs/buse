@@ -1,7 +1,8 @@
 var circularUfrn = angular.module('circularUfrn', []);
 
 function mainController($scope, $http) {
-	var markers;
+	var markers = [];
+	$scope.buses = [];
 
 	$scope.getIcon = function(pos){
 		var resp;
@@ -40,9 +41,11 @@ function mainController($scope, $http) {
 	};
 
 	$scope.initializeMarkers = function() {
+
 		for(var i = 0; i < markers.length; i++){
 			markers[i].setMap(null);
         }
+
 		return [];
 	};
 
