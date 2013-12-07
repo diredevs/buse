@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var busStopSchema = new Schema({
-	lat : Number,
-	lng : Number,
-	city : String
+	lat 	: Number,
+	lng 	: Number,
+	buses 	: {}
 });
 
 module.exports = mongoose.model('BusStop', busStopSchema);

@@ -4,9 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var universitySchema = new Schema({
-	northwest : Number,
-	southeast : Number,
-	name : String
+	name 		: String,
+	northwest 	: Number,
+	southeast 	: Number,
+	busStops	: {}
 });
 
 module.exports = mongoose.model('University', universitySchema);
