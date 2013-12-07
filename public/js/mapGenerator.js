@@ -1,5 +1,4 @@
 var map;
-var markers = [];
 
 function initialize() {
 	var map_canvas = document.getElementById('map_canvas');
@@ -24,7 +23,6 @@ function initialize() {
 		if (strictBounds.contains(map.getCenter())) return;
 
 		// out of bounds - Move the map back within the bounds
-
 		var c = map.getCenter(),
 		x = c.lng(),
 		y = c.lat(),
@@ -40,21 +38,5 @@ function initialize() {
 
 		map.setCenter(new google.maps.LatLng(y, x));
 	});
-
-
-	//set map center to the user location and show its marker
-	/*navigator.geolocation.getCurrentPosition(function(position) {
-  		initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-  		myPosition = initialLocation;
-  		//map.setCenter(myPosition);
-  		marker = new google.maps.Marker({
-			position: myPosition,
-    		map: map,
-    		//icon: 'img/userRedPin.png',
-    		title: 'Minha posição'
-  		});
-		}, function() {}
-	);*/
-
 }
 google.maps.event.addDomListener(window, 'load', initialize);

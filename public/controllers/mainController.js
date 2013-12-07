@@ -1,25 +1,17 @@
 var circularUfrn = angular.module('circularUfrn', []);
 
 function mainController($scope, $http) {
-	$scope.formData = {};
+	var markers;
 
-	// when landing on the page, get all buses and show them
-	$http.get('/api/buses')
-		.success(function(data) {
-			$scope.buses = data;
-		})
-		.error(function(data) {
-			console.log('Error: ' + data);
-		});
-
-	$scope.getIcon = function (pos) {
+	$scope.getIcon = function(pos){
 		var resp;
-		if($scope.buses[pos].text == "cadeirante")
-	    	resp = "./public/img/busBlueMarker.gif"
-	    else
-	    	resp = "./public/img/busMarker.gif"
-	    return resp;
-	}
+		if($scope.buses[pos].handicap){
+			resp = "./public/img/busBlueMarker.gif";
+		}else{
+            resp = "./public/img/busMarker.gif";
+        }
+        return resp;
+	};
 
 	$scope.loadBuses = function(){
 		//get the buses position and set markers
@@ -31,7 +23,7 @@ function mainController($scope, $http) {
 				console.log('Error: ' + data);
 			});
 
-		markers = initializeMarkers();
+		markers = $scope.initializeMarkers();
 		for(var i=0; i < $scope.buses.length;i++){
 			var img = $scope.getIcon(i);
 			var marker = new google.maps.Marker({
@@ -39,28 +31,26 @@ function mainController($scope, $http) {
 					lat : $scope.buses[i].lat,
 					lng : $scope.buses[i].lng
 				},
-	    		map: map,
-	    		icon: img,
-	    		title: $scope.buses[i].text
-	  		});
-	  		markers.push(marker);
+				map: map,
+				icon: img,
+                title: $scope.buses[i].text
+            });
+            markers.push(marker);
 		}
-	}
-	//mudar atualizacao pra ser do model onibus
+	};
 
-	initializeMarkers = function() {
+	$scope.initializeMarkers = function() {
 		for(var i = 0; i < markers.length; i++){
-        	markers[i].setMap(null);
+			markers[i].setMap(null);
         }
-		return [];	
-	}
+		return [];
+	};
 
+    $scope.formData = {};
 	$scope.sendPosition = function() {
-		var person=prompt("Please enter your name","Nome");
-		getCurrentPosition();
-
-		var interval  = setInterval(function(){
-			getCurrentPosition();
+		var person = prompt("Please enter your name","Nome");
+		var iteration = function(){
+			var myPosition = getCurrentPosition();
 		
 			$scope.formData.text = person;
 			$scope.formData.lat = myPosition.lat();
@@ -70,12 +60,15 @@ function mainController($scope, $http) {
 				.error(function(data) {
 					console.log('Error: ' + data);
 				});
-		}, 4000);
-	}
+		};
 
+		iteration();
+		setInterval(iteration, 4000);
+	};
+
+	$scope.loadBuses();
 	setInterval(function() {
-    	$scope.loadBuses();
-    	//$scope.busRefresher();
+		$scope.loadBuses();
 	}, 2000);
 
 }

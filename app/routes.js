@@ -8,8 +8,9 @@ module.exports = function(app) {
 	// get all buses
 	app.get('/api/buses', function(req, res) {
 		Bus.find(function(err, buses) {
-			if (err)
-				res.status(500).send(err)
+			if (err){
+				res.status(500).send(err);
+			}
 			res.status(200).json(buses); // return all buses in JSON format
 		});
 	});
@@ -22,14 +23,16 @@ module.exports = function(app) {
 			lat		: req.body.lat,
 			lng		: req.body.lng
 
-		}, function(err, bus) {
-			if (err)
+		}, function(err) {
+			if (err){
 				res.send(err);
+			}
 
 			// get and return all the buses after you create another
 			Bus.find(function(err, buses) {
-				if (err)
-					res.send(err)
+				if (err){
+					res.send(err);
+				}
 				res.json(buses);
 			});
 		});
@@ -57,7 +60,7 @@ module.exports = function(app) {
 				res.status(500).send(err);
 			}
 			else{
-				if(bus != null){
+				if(bus !== null){
 					res.status(200).send();
 				}
 				else{
