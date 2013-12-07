@@ -18,9 +18,9 @@ module.exports = function(app) {
 	app.post('/api/buses', function(req, res) {
 		// create a bus, information comes from AJAX request from Angular
 		Bus.create({
-			text 	: req.body.nome,
-			lat 	: req.body.lat,
-			lng 	: req.body.lng
+			text	: req.body.text,
+			lat		: req.body.lat,
+			lng		: req.body.lng
 
 		}, function(err, bus) {
 			if (err)
@@ -37,21 +37,16 @@ module.exports = function(app) {
 	});
 
 	// update a bus
-	app.patch('/api/buses/:bus_id', function(req, res) {	
+	app.put('/api/buses/:bus_id', function(req, res) {	
 		Bus.update(
 			{text: req.body.nome}, 
 			{lat: req.body.lat, lng : req.body.lng},
 			{upsert : true},
-			function(err, bus) {
+			function(err) {
 				if (err){
 					res.status(500).send(err);
 				}
-				Bus.find(function(err, buses) {
-					if (err){
-						res.status(500).send();
-					}
-					res.status(200).send();
-				});
+				res.status(200).send();
 			});
 	});
 
@@ -62,10 +57,12 @@ module.exports = function(app) {
 				res.status(500).send(err);
 			}
 			else{
-				if(bus != null)
+				if(bus != null){
 					res.status(200).send();
-				else
+				}
+				else{
 					res.status(404).send();
+				}
 			}
 
 			// get and return all the buses after you delete another

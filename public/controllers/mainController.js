@@ -22,7 +22,16 @@ function mainController($scope, $http) {
 	}
 
 	$scope.loadBuses = function(){
-  		//get the buses position and set markers
+		//get the buses position and set markers
+		$http.get('/api/buses')
+			.success(function(data) {
+				$scope.buses = data;
+			})
+			.error(function(data) {
+				console.log('Error: ' + data);
+			});
+
+		markers = initializeMarkers();
 		for(var i=0; i < $scope.buses.length;i++){
 			var img = $scope.getIcon(i);
 			var marker = new google.maps.Marker({
@@ -36,59 +45,14 @@ function mainController($scope, $http) {
 	  		});
 	  		markers.push(marker);
 		}
-		$scope.busRefresher();
 	}
+	//mudar atualizacao pra ser do model onibus
 
-	$scope.markersRefresher = function() {
+	initializeMarkers = function() {
 		for(var i = 0; i < markers.length; i++){
-			markers[i].setMap(null);
-		}
-
-		markers.length = $scope.buses.length;
-
-		for(var i=0; i < $scope.buses.length;i++){
-			var newImg = $scope.getIcon(i);
-			var newMarker = new google.maps.Marker({
-				position: {lat : $scope.buses[i].lat,
-					lng : $scope.buses[i].lng},
-	    		map: map,
-	    		icon: newImg,
-	    		title: $scope.buses[i].text
-	  		});
-	  		markers[i] = newMarker;
-		}
-	}
-
-	$scope.busRefresher = function() {
-		var date = new Date();
-		var hour = date.getHours();
-		var minutes = date.getMinutes();
-
-		interval = setInterval(function(){
-
-			if(markers.length != $scope.buses.length){
-				$scope.markersRefresher();
-			}
-
-			if(following){
-				console.log("refreshing buses...")
-				for(var i = 0; i < $scope.buses.length; i++){
-					markers[i].setPosition({
-    				lat: $scope.buses[i].lat,
-    				lng: $scope.buses[i].lng
-    				});
-    				markers[i].setTitle($scope.buses[i].text);
-				}
-				hour = date.getHours();
-				minutes = date.getMinutes();
-			}
-			else{
-				for(var i = 0; i < $scope.buses.length; i++){
-    				markers[i].setTitle("atualizado as "+hour+':'+minutes);
-				}
-
-			}
-		}, 300);
+        	markers[i].setMap(null);
+        }
+		return [];	
 	}
 
 	$scope.sendPosition = function() {
@@ -102,28 +66,16 @@ function mainController($scope, $http) {
 			$scope.formData.lat = myPosition.lat();
 			$scope.formData.lng = myPosition.lng();
 
-			$http.post('/api/buses/' + person, $scope.formData)
-				.success(function(data) {
-					$scope.buses = data;
-					console.log(data);
-				})
+			$http.put('/api/buses/' + person, $scope.formData)
 				.error(function(data) {
 					console.log('Error: ' + data);
 				});
 		}, 4000);
 	}
 
-	setTimeout(function() {
+	setInterval(function() {
     	$scope.loadBuses();
+    	//$scope.busRefresher();
 	}, 2000);
 
-	var ref = setInterval(function(){
-		$http.get('/api/buses')
-				.success(function(data) {
-					$scope.buses = data;
-				})
-				.error(function(data) {
-					console.log('Error: ' + data);
-				});
-			}, 4000);
 }
